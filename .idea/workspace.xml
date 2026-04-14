@@ -4,6 +4,7 @@
     <list default="true" id="e8ea1fe7-160e-4e06-b089-b1718358457d" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../Activities/Activities.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Tasks/Tasks.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Test/Test/src/Test.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pancake-recipe/pancakes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../pancake-recipe/pancakes.md" afterDir="false" />
     </list>
