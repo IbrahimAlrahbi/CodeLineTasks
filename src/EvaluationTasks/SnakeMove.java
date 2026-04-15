@@ -45,5 +45,8 @@ public class SnakeMove {
                 return;
             }
         }
+        //  Printing Direction and Steps
+        System.out.println("Direction: " + direction);
+        System.out.println("Steps: \n" + steps);
     }
 }
