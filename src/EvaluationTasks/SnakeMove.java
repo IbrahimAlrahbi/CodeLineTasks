@@ -136,5 +136,37 @@ public class SnakeMove {
         //  Locating the Snake in the Grid
         LinkedList<int[]> snake = new LinkedList<>();
 
+        // [ADDED] If the snake order line exists, read the snake order from it
+        // This gives us the correct tail-to-head order for any snake shape
+        if (snakeOrderLine != null) {
+            // [ADDED] Each point looks like (row,col) and they are separated by spaces
+            // For example: (2,3) (2,4) (2,5)
+            String[] points = snakeOrderLine.split(" ");
+            for (String point : points) {
+                // [ADDED] Remove the "(" and ")" and split by ","
+                point = point.replace("(", "").replace(")", "");
+                String[] snakeLocation = point.split(",");
+                int r = Integer.parseInt(snakeLocation[0].trim());
+                int c = Integer.parseInt(snakeLocation[1].trim());
+                snake.add(new int[]{r, c});
+            }
+
+        } else {
+            // [ADDED] First time running: no order line exists yet, so fall back to
+            // the original scan method to at least find the snake segments
+            for (int row = 0; row < rows; row++) {
+                for (int col = 0; col < columns; col++) {
+                    if (map[row][col] == 'o') {
+                        snake.add(new int[]{row, col});
+                    }
+                }
+            }
+        }
+
+        if (snake.isEmpty()) {
+            System.out.println("No snake found in map.txt!");
+            return;
+        }
+
     }
 }
