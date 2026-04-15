@@ -58,5 +58,31 @@ public class SnakeMove {
         File mapFile = new File("src/main/java/com/agileoracleseval/slitheringeval/ibrahim_alrahbi/SnakeMove/map");
         System.out.println(mapFile.getAbsolutePath());
 
+        try {
+            Scanner fileReader = new Scanner(mapFile);
+
+            //  looping as long as there is another line in the file
+            while (fileReader.hasNextLine()) {
+                //  removes extra spaces at the beginning and end of the line
+                String line = fileReader.nextLine().trim();
+                // This checks if line is not empty
+                if (!line.isEmpty()) {
+                    // [ADDED] Check if this line is the snake order line (starts with "(")
+                    // If yes, save it separately instead of adding it to the map rows
+                    if (line.startsWith("(")) {
+                        snakeOrderLine = line;
+                    } else {
+                        String[] parts = line.split(" "); // Split lines by spaces; ease to access
+                        rowsData.add(parts);
+                    }
+                }
+            }
+            fileReader.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: map.txt file not found.");
+            return;
+        }
+
     }
 }
