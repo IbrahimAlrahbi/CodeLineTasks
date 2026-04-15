@@ -207,6 +207,17 @@ public class SnakeMove {
         map[newRow][newCol] = 'o';
         map[tail[0]][tail[1]] = '-';
     }
+
+    //  Part.4 Save map.txt to file & Print it
+    BufferedWriter fileWrite = new BufferedWriter(new FileWriter(
+            "src/main/java/com/agileoracleseval/slitheringeval/ibrahim_alrahbi/SnakeMove/map"));
+
+        for (int row = 0; row < rows; row++) {
+        for (int col = 0; col < columns; col++) {
+            fileWrite.write(map[row][col] + " ");
+        }
+        fileWrite.newLine();
+    }
         public static void printValidDirections(int[] head, char[][] map) {
             int row = head[0];
             int col = head[1];
