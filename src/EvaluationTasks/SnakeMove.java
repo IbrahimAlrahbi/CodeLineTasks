@@ -48,5 +48,15 @@ public class SnakeMove {
         //  Printing Direction and Steps
         System.out.println("Direction: " + direction);
         System.out.println("Steps: \n" + steps);
+
+        //  Part 2. Read file and split each row immediately
+
+        ArrayList<String[]> rowsData = new ArrayList<>();
+        // [ADDED] A variable to store the snake order line if it exists in the file
+        String snakeOrderLine = null;
+
+        File mapFile = new File("src/main/java/com/agileoracleseval/slitheringeval/ibrahim_alrahbi/SnakeMove/map");
+        System.out.println(mapFile.getAbsolutePath());
+
     }
 }
