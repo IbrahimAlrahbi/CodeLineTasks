@@ -233,6 +233,17 @@ public class SnakeMove {
         fileWrite.newLine();
     // [ADDED] End of snake order line writing
 
+    fileWrite.close();
+
+    //  Print map.txt
+        System.out.println("\nUpdated Map:");
+        for (int row = 0; row < rows; row++) {
+        for (int col = 0; col < columns; col++) {
+            System.out.print(map[row][col] + " ");
+        }
+        System.out.println();
+    }
+
         fileWrite.close();
         public static void printValidDirections(int[] head, char[][] map) {
             int row = head[0];
