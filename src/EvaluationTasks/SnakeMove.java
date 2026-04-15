@@ -1,4 +1,4 @@
-package com.agileoracleseval.slitheringeval.ibrahim_alrahbi.SnakeMove;
+package EvaluationTasks;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -51,9 +51,7 @@ public class SnakeMove {
         System.out.println("Direction: " + direction);
         System.out.println("Steps: \n" + steps);
 
-
         //  Part 2. Read file and split each row immediately
-
         ArrayList<String[]> rowsData = new ArrayList<>();
         // [ADDED] A variable to store the snake order line if it exists in the file
         String snakeOrderLine = null;
@@ -86,7 +84,6 @@ public class SnakeMove {
             System.out.println("Error: map.txt file not found.");
             return;
         }
-
 
         //  Part 2: Validate map.txt content & Create 2D Array
         int rows = rowsData.size();
@@ -134,7 +131,6 @@ public class SnakeMove {
             }
             System.out.println();
         }
-
 
         //  Locating the Snake in the Grid
         LinkedList<int[]> snake = new LinkedList<>();
@@ -211,7 +207,6 @@ public class SnakeMove {
             map[newRow][newCol] = 'o';
             map[tail[0]][tail[1]] = '-';
         }
-
 
         //  Part.4 Save map.txt to file & Print it
         BufferedWriter fileWrite = new BufferedWriter(new FileWriter(
