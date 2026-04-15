@@ -218,6 +218,22 @@ public class SnakeMove {
         }
         fileWrite.newLine();
     }
+    // [ADDED] After saving the map, write the updated snake order on the extra line
+    // This way, the next run will read the correct order from this line
+    StringBuilder snakeOrderBuilder = new StringBuilder();
+        for (int i = 0; i < snake.size(); i++) {
+        int[] segment = snake.get(i);
+        snakeOrderBuilder.append("(").append(segment[0]).append(",").append(segment[1]).append(")");
+        // [ADDED] Add a space between points but not after the last one
+        if (i < snake.size() - 1) {
+            snakeOrderBuilder.append(" ");
+        }
+    }
+        fileWrite.write(snakeOrderBuilder.toString());
+        fileWrite.newLine();
+    // [ADDED] End of snake order line writing
+
+        fileWrite.close();
         public static void printValidDirections(int[] head, char[][] map) {
             int row = head[0];
             int col = head[1];
