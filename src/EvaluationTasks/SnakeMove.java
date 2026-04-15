@@ -168,5 +168,25 @@ public class SnakeMove {
             return;
         }
 
+        //  Part.3 Moving the Snake
+        // Repeating Number of Steps Entered
+        for (int step = 0; step < steps; step++) {
+            //  Get the Last Element in the LinkedList
+            int[] head = snake.getLast();
+            //  Copy the current Head Position Into Row and Column
+            int newRow = head[0];
+            int newCol = head[1];
+
+            if (direction.equals("up")) {
+                newRow--;
+            } else if (direction.equals("down")) {
+                newRow++;
+            } else if (direction.equals("left")) {
+                newCol--;
+            } else if (direction.equals("right")) {
+                newCol++;
+            }
+        }
+
     }
 }
