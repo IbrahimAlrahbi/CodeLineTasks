@@ -84,5 +84,26 @@ public class SnakeMove {
             return;
         }
 
+        //  Part 2: Validate map.txt content & Create 2D Array
+        int rows = rowsData.size();
+        if (rows == 0) {
+            System.out.println("Error: Map file is empty.");
+            return;
+        }
+
+        int columns = rowsData.get(0).length;
+        //  Check if n*n & n>=15
+        if (rows < 15 || columns < 15) {
+            System.out.println("Error: Map must be at least 15x15.");
+            return;
+        }
+
+        for (int i = 0; i < rows; i++) {
+            if (rowsData.get(i).length != columns) {
+                System.out.println("Error: Invalid map.txt format.");
+                return;
+            }
+        }
+
     }
 }
