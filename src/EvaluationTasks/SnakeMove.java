@@ -20,5 +20,14 @@ public class SnakeMove {
             System.out.println("Error: Input Must Be java MoveSnake <direction> <steps>");
             return;
         }
+        //  Validate Direction
+        String direction = argumentsInput[0].toLowerCase(); // So That it Can Read Any Letter
+        if (!direction.equals("up") &&
+                !direction.equals("down") &&
+                !direction.equals("left") &&
+                !direction.equals("right")) {
+            System.out.println("Error: Invalid Direction.");
+            return;
+        }
     }
 }
