@@ -243,6 +243,9 @@ public class SnakeMove {
         }
         System.out.println();
     }
+    // [ADDED] Print the snake order so the user can see it in the console too
+        System.out.println("Snake order (tail to head): " + snakeOrderBuilder.toString());
+}
 
         fileWrite.close();
         public static void printValidDirections(int[] head, char[][] map) {
