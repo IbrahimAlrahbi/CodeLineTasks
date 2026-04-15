@@ -1,4 +1,4 @@
-package EvaluationTasks;
+package com.agileoracleseval.slitheringeval.ibrahim_alrahbi.SnakeMove;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ public class SnakeMove {
             System.out.println("Error: Input Must Be java MoveSnake <direction> <steps>");
             return;
         }
+
         //  Validate Direction
         String direction = argumentsInput[0].toLowerCase(); // So That it Can Read Any Letter
         if (!direction.equals("up") &&
@@ -29,6 +30,7 @@ public class SnakeMove {
             System.out.println("Error: Invalid Direction.");
             return;
         }
+
         //  Validate Steps
         int steps = 1; // Default if User Don't Specify
         if (argumentsInput.length == 2) {
@@ -48,6 +50,7 @@ public class SnakeMove {
         //  Printing Direction and Steps
         System.out.println("Direction: " + direction);
         System.out.println("Steps: \n" + steps);
+
 
         //  Part 2. Read file and split each row immediately
 
@@ -84,6 +87,7 @@ public class SnakeMove {
             return;
         }
 
+
         //  Part 2: Validate map.txt content & Create 2D Array
         int rows = rowsData.size();
         if (rows == 0) {
@@ -104,7 +108,6 @@ public class SnakeMove {
                 return;
             }
         }
-
         //  Validate symbols - & o if there are another symbols
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
@@ -115,7 +118,6 @@ public class SnakeMove {
                 }
             }
         }
-
         //  Create 2D Array & filling
         char[][] map = new char[rows][columns];
         for (int row = 0; row < rows; row++) {
@@ -123,8 +125,8 @@ public class SnakeMove {
                 map[row][col] = rowsData.get(row)[col].charAt(0);
             }
         }
-
         //  Printing the grid map.txt
+
         System.out.println("\nThe map:");
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
@@ -132,6 +134,7 @@ public class SnakeMove {
             }
             System.out.println();
         }
+
 
         //  Locating the Snake in the Grid
         LinkedList<int[]> snake = new LinkedList<>();
@@ -168,6 +171,7 @@ public class SnakeMove {
             return;
         }
 
+
         //  Part.3 Moving the Snake
         // Repeating Number of Steps Entered
         for (int step = 0; step < steps; step++) {
@@ -186,84 +190,84 @@ public class SnakeMove {
             } else if (direction.equals("right")) {
                 newCol++;
             }
+
+            //  If Outside the map
+            if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= columns) {
+                System.out.println("Invalid move! Out of boundaries.");
+                printValidDirections(head, map);
+                return;
+            }
+
+            //  Collision
+            if (map[newRow][newCol] == 'o') {
+                System.out.println("Collision! Snake hit itself.");
+                printValidDirections(head, map);
+                return;
+            }
+
+            // Moving: Add Head & Remove Tail
+            snake.addLast(new int[]{newRow, newCol});
+            int[] tail = snake.removeFirst();
+            map[newRow][newCol] = 'o';
+            map[tail[0]][tail[1]] = '-';
         }
 
-        //  If Outside the map
-        if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= columns) {
-            System.out.println("Invalid move! Out of boundaries.");
-            printValidDirections(head, map);
-            return;
-        }
 
-        //  Collision
-        if (map[newRow][newCol] == 'o') {
-            System.out.println("Collision! Snake hit itself.");
-            printValidDirections(head, map);
-            return;
-        }
-        // Moving: Add Head & Remove Tail
-        snake.addLast(new int[]{newRow, newCol});
-        int[] tail = snake.removeFirst();
-        map[newRow][newCol] = 'o';
-        map[tail[0]][tail[1]] = '-';
-    }
-
-    //  Part.4 Save map.txt to file & Print it
-    BufferedWriter fileWrite = new BufferedWriter(new FileWriter(
-            "src/main/java/com/agileoracleseval/slitheringeval/ibrahim_alrahbi/SnakeMove/map"));
+        //  Part.4 Save map.txt to file & Print it
+        BufferedWriter fileWrite = new BufferedWriter(new FileWriter(
+                "src/main/java/com/agileoracleseval/slitheringeval/ibrahim_alrahbi/SnakeMove/map"));
 
         for (int row = 0; row < rows; row++) {
-        for (int col = 0; col < columns; col++) {
-            fileWrite.write(map[row][col] + " ");
+            for (int col = 0; col < columns; col++) {
+                fileWrite.write(map[row][col] + " ");
+            }
+            fileWrite.newLine();
         }
-        fileWrite.newLine();
-    }
-    // [ADDED] After saving the map, write the updated snake order on the extra line
-    // This way, the next run will read the correct order from this line
-    StringBuilder snakeOrderBuilder = new StringBuilder();
+
+        // [ADDED] After saving the map, write the updated snake order on the extra line
+        // This way, the next run will read the correct order from this line
+        StringBuilder snakeOrderBuilder = new StringBuilder();
         for (int i = 0; i < snake.size(); i++) {
-        int[] segment = snake.get(i);
-        snakeOrderBuilder.append("(").append(segment[0]).append(",").append(segment[1]).append(")");
-        // [ADDED] Add a space between points but not after the last one
-        if (i < snake.size() - 1) {
-            snakeOrderBuilder.append(" ");
+            int[] segment = snake.get(i);
+            snakeOrderBuilder.append("(").append(segment[0]).append(",").append(segment[1]).append(")");
+            // [ADDED] Add a space between points but not after the last one
+            if (i < snake.size() - 1) {
+                snakeOrderBuilder.append(" ");
+            }
         }
-    }
         fileWrite.write(snakeOrderBuilder.toString());
         fileWrite.newLine();
-    // [ADDED] End of snake order line writing
-
-    fileWrite.close();
-
-    //  Print map.txt
-        System.out.println("\nUpdated Map:");
-        for (int row = 0; row < rows; row++) {
-        for (int col = 0; col < columns; col++) {
-            System.out.print(map[row][col] + " ");
-        }
-        System.out.println();
-    }
-    // [ADDED] Print the snake order so the user can see it in the console too
-        System.out.println("Snake order (tail to head): " + snakeOrderBuilder.toString());
-}
+        // [ADDED] End of snake order line writing
 
         fileWrite.close();
-        public static void printValidDirections(int[] head, char[][] map) {
-            int row = head[0];
-            int col = head[1];
-            int rows = map.length;
-            int columns = map[0].length;
 
-            System.out.print("Valid directions: ");
-
-            if (row > 0 && map[row - 1][col] != 'o') System.out.print("up ");
-            if (row < rows - 1 && map[row + 1][col] != 'o') System.out.print("down ");
-            if (col > 0 && map[row][col - 1] != 'o') System.out.print("left ");
-            if (col < columns - 1 && map[row][col + 1] != 'o') System.out.print("right ");
-
+        //  Print map.txt
+        System.out.println("\nUpdated Map:");
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                System.out.print(map[row][col] + " ");
+            }
             System.out.println();
         }
 
+        // [ADDED] Print the snake order so the user can see it in the console too
+        System.out.println("Snake order (tail to head): " + snakeOrderBuilder.toString());
+    }
 
+    //  Validate directions (Inside Map or Not Part of Snake)
+    public static void printValidDirections(int[] head, char[][] map) {
+        int row = head[0];
+        int col = head[1];
+        int rows = map.length;
+        int columns = map[0].length;
+
+        System.out.print("Valid directions: ");
+
+        if (row > 0 && map[row - 1][col] != 'o') System.out.print("up ");
+        if (row < rows - 1 && map[row + 1][col] != 'o') System.out.print("down ");
+        if (col > 0 && map[row][col - 1] != 'o') System.out.print("left ");
+        if (col < columns - 1 && map[row][col + 1] != 'o') System.out.print("right ");
+
+        System.out.println();
     }
 }
