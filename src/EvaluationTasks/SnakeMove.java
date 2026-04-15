@@ -188,5 +188,35 @@ public class SnakeMove {
             }
         }
 
+        //  If Outside the map
+        if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= columns) {
+            System.out.println("Invalid move! Out of boundaries.");
+            printValidDirections(head, map);
+            return;
+        }
+
+        //  Collision
+        if (map[newRow][newCol] == 'o') {
+            System.out.println("Collision! Snake hit itself.");
+            printValidDirections(head, map);
+            return;
+        }
+        public static void printValidDirections(int[] head, char[][] map) {
+            int row = head[0];
+            int col = head[1];
+            int rows = map.length;
+            int columns = map[0].length;
+
+            System.out.print("Valid directions: ");
+
+            if (row > 0 && map[row - 1][col] != 'o') System.out.print("up ");
+            if (row < rows - 1 && map[row + 1][col] != 'o') System.out.print("down ");
+            if (col > 0 && map[row][col - 1] != 'o') System.out.print("left ");
+            if (col < columns - 1 && map[row][col + 1] != 'o') System.out.print("right ");
+
+            System.out.println();
+        }
+
+
     }
 }
