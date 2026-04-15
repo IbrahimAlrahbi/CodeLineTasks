@@ -116,5 +116,13 @@ public class SnakeMove {
             }
         }
 
+        //  Create 2D Array & filling
+        char[][] map = new char[rows][columns];
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                map[row][col] = rowsData.get(row)[col].charAt(0);
+            }
+        }
+
     }
 }
