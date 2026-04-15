@@ -105,5 +105,16 @@ public class SnakeMove {
             }
         }
 
+        //  Validate symbols - & o if there are another symbols
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                String cell = rowsData.get(row)[col];
+                if (!cell.equals("-") && !cell.equals("o")) {
+                    System.out.println("Error: Invalid symbol found in the map.txt.");
+                    return;
+                }
+            }
+        }
+
     }
 }
