@@ -133,5 +133,8 @@ public class SnakeMove {
             System.out.println();
         }
 
+        //  Locating the Snake in the Grid
+        LinkedList<int[]> snake = new LinkedList<>();
+
     }
 }
