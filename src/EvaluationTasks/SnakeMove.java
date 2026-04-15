@@ -124,5 +124,14 @@ public class SnakeMove {
             }
         }
 
+        //  Printing the grid map.txt
+        System.out.println("\nThe map:");
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                System.out.print(map[row][col] + " ");
+            }
+            System.out.println();
+        }
+
     }
 }
