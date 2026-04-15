@@ -201,6 +201,12 @@ public class SnakeMove {
             printValidDirections(head, map);
             return;
         }
+        // Moving: Add Head & Remove Tail
+        snake.addLast(new int[]{newRow, newCol});
+        int[] tail = snake.removeFirst();
+        map[newRow][newCol] = 'o';
+        map[tail[0]][tail[1]] = '-';
+    }
         public static void printValidDirections(int[] head, char[][] map) {
             int row = head[0];
             int col = head[1];
