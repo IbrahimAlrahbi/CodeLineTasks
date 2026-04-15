@@ -29,5 +29,21 @@ public class SnakeMove {
             System.out.println("Error: Invalid Direction.");
             return;
         }
+        //  Validate Steps
+        int steps = 1; // Default if User Don't Specify
+        if (argumentsInput.length == 2) {
+            try {
+                steps = Integer.parseInt(argumentsInput[1]);
+
+                if (steps <= 0) {
+                    System.out.println("Error: Steps Must be a Positive Integer.");
+                    return;
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Steps Must be a Valid Integer.");
+                return;
+            }
+        }
     }
 }
